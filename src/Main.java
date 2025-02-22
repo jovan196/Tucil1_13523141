@@ -19,14 +19,25 @@ public class Main {
                 String configType = fileScanner.nextLine().trim();
                 System.out.println("Konfigurasi: " + configType);
 
-                // Inisialisasi papan kosong
-                PuzzleBoard puzzleBoard = new PuzzleBoard(boardRows, boardCols);
+                PuzzleBoard puzzleBoard;
+                if (configType.equalsIgnoreCase("CUSTOM")) {
+                    // Baca custom layout (NxM matrix)
+                    String[] layout = new String[boardRows];
+                    for (int i = 0; i < boardRows; i++) {
+                        layout[i] = fileScanner.nextLine();
+                    }
+                    // Changed from PuzzleBoardCustom to PuzzleBoard
+                    puzzleBoard = new PuzzleBoard(layout);
+                } else {
+                    // Rectangle board initialization
+                    puzzleBoard = new PuzzleBoard(boardRows, boardCols);
+                }
 
-                // --- Perbaikan: Baca seluruh baris yang tersisa ke dalam list ---
+                // Baca seluruh baris yang tersisa ke dalam list
                 List<String> remainingLines = new ArrayList<>();
                 while (fileScanner.hasNextLine()) {
-                    String line = fileScanner.nextLine().trim();
-                    if (!line.isEmpty()) {
+                    String line = fileScanner.nextLine();
+                    if (!line.trim().isEmpty()) {
                         remainingLines.add(line);
                     }
                 }
@@ -38,7 +49,7 @@ public class Main {
                     char expectedChar = (char) ('A' + i);
                     List<String> shapeLines = new ArrayList<>();
                     // Ambil baris selama huruf awal sesuai dengan expectedChar
-                    while (pointer < remainingLines.size() && remainingLines.get(pointer).charAt(0) == expectedChar) {
+                    while (pointer < remainingLines.size() && !remainingLines.get(pointer).trim().isEmpty() && remainingLines.get(pointer).trim().charAt(0) == expectedChar) {
                         shapeLines.add(remainingLines.get(pointer));
                         pointer++;
                     }
@@ -66,6 +77,8 @@ public class Main {
                     System.out.println("\nWaktu pencarian: " + searchTimeMs + " ms");
                     System.out.println("Banyak kasus yang ditinjau: " + PuzzleSolver.casesTried);
                 } else {
+                    System.out.println("\nWaktu pencarian: " + searchTimeMs + " ms");
+                    System.out.println("Banyak kasus yang ditinjau: " + PuzzleSolver.casesTried);
                     System.out.println("Tidak ada solusi.");
                 }
 

@@ -54,30 +54,39 @@ public class PuzzleSolver {
         return null;
     }
     
-    // Periksa apakah sebuah blok (dengan orientasi tertentu dan offset) dapat ditempatkan
+    // Updated canPlace that ignores barrier cells '#'
     public static boolean canPlace(PuzzleBoard puzzleBoard, List<Point> orient, int offsetR, int offsetC) {
         for (Point p : orient) {
             int r = offsetR + p.r;
             int c = offsetC + p.c;
             if (r < 0 || r >= puzzleBoard.getRows() || c < 0 || c >= puzzleBoard.getCols())
                 return false;
-            if (puzzleBoard.getCell(r,c) != '.')
+            char cell = puzzleBoard.getCell(r, c);
+            if (cell == '#') {
+                // Skip barrier cell
+                continue;
+            }
+            if (cell != '.')
                 return false;
         }
         return true;
     }
     
-    // Tempatkan blok puzzle ke papan (tulis id di setiap sel yang terisi)
+    // Updated placePiece: only change empty ('.') cells, leave '#' intact
     public static void placePiece(PuzzleBoard puzzleBoard, char id, List<Point> orient, int offsetR, int offsetC) {
         for (Point p : orient) {
-            puzzleBoard.setCell(offsetR + p.r, offsetC + p.c, id);
+            int r = offsetR + p.r, c = offsetC + p.c;
+            if (puzzleBoard.getCell(r, c) == '.')
+                puzzleBoard.setCell(r, c, id);
         }
     }
     
-    // Hapus blok puzzle dari papan (set ulang sel ke '.')
+    // Updated removePiece: only remove piece id from cells that were changed (ignore barriers)
     public static void removePiece(PuzzleBoard puzzleBoard, List<Point> orient, int offsetR, int offsetC) {
         for (Point p : orient) {
-            puzzleBoard.setCell(offsetR + p.r, offsetC + p.c, '.');
+            int r = offsetR + p.r, c = offsetC + p.c;
+            if (puzzleBoard.getCell(r, c) != '#')
+                puzzleBoard.setCell(r, c, '.');
         }
     }
     

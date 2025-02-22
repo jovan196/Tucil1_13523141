@@ -29,6 +29,19 @@ public class PuzzleBoard {
         }
     }
 
+    // New constructor for custom board configuration
+    public PuzzleBoard(String[] layout) {
+        boardRows = layout.length;
+        boardCols = layout[0].length();
+        board = new char[boardRows][boardCols];
+        for (int i = 0; i < boardRows; i++) {
+            for (int j = 0; j < boardCols; j++) {
+                // 'X' indicates an allowed cell (empty), others are blocked
+                board[i][j] = (layout[i].charAt(j) == 'X') ? '.' : '#';
+            }
+        }
+    }
+
     public int getRows() {
         return boardRows;
     }
