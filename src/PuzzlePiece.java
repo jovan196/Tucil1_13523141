@@ -61,7 +61,7 @@ public class PuzzlePiece {
             addIfUnique.accept(current);
             current = rotate90(current);
         }
-        // Dapatkan cermin (flip horizontal) dari bentuk dasar
+        // Mendapatkan cermin (flip horizontal) dari bentuk dasar
         List<Point> mirrored = mirror(base);
         current = mirrored;
         for (int i = 0; i < 4; i++) {

@@ -1,8 +1,0 @@
-ABBCC
-AABCE
-GGGEE
-DDFFE
-DDFFF
-
-Waktu pencarian: 1 ms
-Banyak kasus yang ditinjau: 326

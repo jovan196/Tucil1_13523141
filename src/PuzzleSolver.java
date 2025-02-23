@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PuzzleSolver {
     public static int casesTried = 0;
-    // Metode rekursif untuk pencarian solusi dengan backtracking (brute force murni)
+    // Metode rekursif untuk pencarian solusi dengan backtracking (brute force murni dengan backtracking)
     public static boolean solve(PuzzleBoard puzzleBoard, List<PuzzlePiece> pieces, boolean[] used) {
         int[] pos = findEmpty(puzzleBoard);
         if (pos == null) {
@@ -54,7 +54,8 @@ public class PuzzleSolver {
         return null;
     }
     
-    // Updated canPlace that ignores barrier cells '#'
+    // Cek apakah blok puzzle dapat diletakkan pada papan pada posisi tertentu
+    // Tanda '#' diabaikan, '.' dianggap kosong, karakter lain dianggap sudah terisi
     public static boolean canPlace(PuzzleBoard puzzleBoard, List<Point> orient, int offsetR, int offsetC) {
         for (Point p : orient) {
             int r = offsetR + p.r;
@@ -63,7 +64,7 @@ public class PuzzleSolver {
                 return false;
             char cell = puzzleBoard.getCell(r, c);
             if (cell == '#') {
-                // Skip barrier cell
+                // Skip sel yang sudah terisi
                 continue;
             }
             if (cell != '.')
@@ -72,7 +73,8 @@ public class PuzzleSolver {
         return true;
     }
     
-    // Updated placePiece: only change empty ('.') cells, leave '#' intact
+    // Letakkan blok puzzle pada papan pada posisi tertentu
+    // Karakter '#' diabaikan, karakter '.' diisi dengan karakter id
     public static void placePiece(PuzzleBoard puzzleBoard, char id, List<Point> orient, int offsetR, int offsetC) {
         for (Point p : orient) {
             int r = offsetR + p.r, c = offsetC + p.c;
@@ -81,7 +83,8 @@ public class PuzzleSolver {
         }
     }
     
-    // Updated removePiece: only remove piece id from cells that were changed (ignore barriers)
+    // Menghapus blok puzzle dari papan pada posisi tertentu
+    // Karakter '#' diabaikan, karakter '.' diisi kembali dengan karakter '.'
     public static void removePiece(PuzzleBoard puzzleBoard, List<Point> orient, int offsetR, int offsetC) {
         for (Point p : orient) {
             int r = offsetR + p.r, c = offsetC + p.c;

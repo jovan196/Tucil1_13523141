@@ -1,9 +1,0 @@
-ABBCCD
-AABCDD
-AEBFFF
-GEEHHI
-GEJJII
-GGJJII
-
-Waktu pencarian: 4 ms
-Banyak kasus yang ditinjau: 82

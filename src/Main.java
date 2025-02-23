@@ -5,10 +5,10 @@ public class Main {
     public static void main(String[] args) {
         List<PuzzlePiece> pieces = new ArrayList<>();
         try (Scanner consoleScanner = new Scanner(System.in)) {
-            System.out.print("Masukkan path file test case (.txt): ");
+            System.out.print("Masukkan path file test case pada folder test (.txt): ");
             String filePath = consoleScanner.nextLine().trim();
             
-            try (Scanner fileScanner = new Scanner(new File(filePath))) {
+            try (Scanner fileScanner = new Scanner(new File("../test/" + filePath))) {
                 // Baca dimensi papan dan jumlah blok puzzle
                 int boardRows = fileScanner.nextInt();
                 int boardCols = fileScanner.nextInt();
@@ -88,8 +88,9 @@ public class Main {
                 if (response.equals("ya")) {
                     System.out.print("Masukkan nama file output (.txt): ");
                     String outFile = consoleScanner.nextLine();
-                    PuzzleSolver.saveSolution(outFile, puzzleBoard, searchTimeMs, PuzzleSolver.casesTried);
-                    System.out.println("Solusi telah disimpan pada file " + outFile);
+                    puzzleBoard.generateImageResult("../test/" + outFile + ".jpg", pieces);
+                    PuzzleSolver.saveSolution("../test/" + outFile, puzzleBoard, searchTimeMs, PuzzleSolver.casesTried);
+                    System.out.println("Solusi telah disimpan pada folder test dengan nama  " + outFile);
                 }
 
             } catch (FileNotFoundException e) {
