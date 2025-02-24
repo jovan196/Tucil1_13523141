@@ -1,0 +1,8 @@
+AAABBBCCDDE
+AFAGBBCDDEE
+FFGGGGCDKEL
+HFFIIIJKKEL
+HHHHIJJKLLL
+
+Waktu pencarian: 5 ms
+Banyak kasus yang ditinjau: 652

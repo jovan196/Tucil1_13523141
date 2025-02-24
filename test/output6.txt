@@ -1,8 +1,5 @@
-###A###
-#BBAAA#
-BBBCCCC
-#EEECD#
-###E###
+..
+..
 
-Waktu pencarian: 8 ms
-Banyak kasus yang ditinjau: 14326
+Waktu pencarian: 1 ms
+Banyak kasus yang ditinjau: 18

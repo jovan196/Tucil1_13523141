@@ -1,0 +1,8 @@
+###A###
+#BBAAA#
+BBBCCCC
+#EEECD#
+###E###
+
+Waktu pencarian: 9 ms
+Banyak kasus yang ditinjau: 14326
