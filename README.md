@@ -10,7 +10,7 @@ Aplikasi ini dirancang untuk memecahkan teka-teki puzzle menggunakan algoritma _
 Pastikan Java Runtime Environment dan Java Compiler sudah terinstall. Versi minimum Java: 23+37-2369.
 
 ## Initial Configuration:
-1. Run terminal dan buka folder root
+1. Run terminal dan buka folder bin
 ```bash
 cd bin
 ```
@@ -20,7 +20,7 @@ cd bin
 javac ../src/*.java -d ../bin
 ```
 
-3. Run aplikasi
+3. Run aplikasi melalui class Main
 ```bash
 java Main
 ```
